@@ -1,11 +1,14 @@
 - name: Create Kubernetes cluster
   hosts: metal
   roles:
-    - prerequisites
-    - k3s
-    - automatic_upgrade
+    - role: prerequisites
+      tags: [prerequisites]
+    - role: k3s
+      tags: [k3s]
+    # - automatic_upgrade  # Disabled for Proxmox/Debian compatibility
 
 - name: Install Kubernetes addons
   hosts: localhost
   roles:
-    - cilium
+    - role: cilium
+      tags: [cilium]

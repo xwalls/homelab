@@ -1,8 +1,6 @@
 data "cloudflare_zone" "zone" {
-  name = "khuedoan.com"
+  name = "ostreros.xyz"
 }
-
-data "cloudflare_api_token_permission_groups" "all" {}
 
 resource "random_password" "tunnel_secret" {
   length  = 64
@@ -45,20 +43,6 @@ resource "kubernetes_secret" "cloudflared_credentials" {
   }
 }
 
-resource "cloudflare_api_token" "external_dns" {
-  name = "homelab_external_dns"
-
-  policy {
-    permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["Zone Read"],
-      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
-    ]
-    resources = {
-      "com.cloudflare.api.account.zone.*" = "*"
-    }
-  }
-}
-
 resource "kubernetes_secret" "external_dns_token" {
   metadata {
     name      = "cloudflare-api-token"
@@ -70,21 +54,7 @@ resource "kubernetes_secret" "external_dns_token" {
   }
 
   data = {
-    "value" = cloudflare_api_token.external_dns.value
-  }
-}
-
-resource "cloudflare_api_token" "cert_manager" {
-  name = "homelab_cert_manager"
-
-  policy {
-    permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["Zone Read"],
-      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
-    ]
-    resources = {
-      "com.cloudflare.api.account.zone.*" = "*"
-    }
+    "value" = var.cloudflare_api_token
   }
 }
 
@@ -99,6 +69,6 @@ resource "kubernetes_secret" "cert_manager_token" {
   }
 
   data = {
-    "api-token" = cloudflare_api_token.cert_manager.value
+    "api-token" = var.cloudflare_api_token
   }
 }

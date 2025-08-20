@@ -17,20 +17,12 @@
           - status.phase=Running
       register: first_install
 
-    - name: Render ArgoCD manifests from Helm chart
-      kubernetes.core.helm_template:
+    - name: Install ArgoCD using Helm
+      kubernetes.core.helm:
+        name: argocd
         chart_ref: ./argocd
-        include_crds: true
-        release_name: argocd
         release_namespace: argocd
+        create_namespace: true
         dependency_update: true
         values_files:
           - "argocd/{{ (first_install.resources | length == 0) | ternary('values-seed.yaml', 'values.yaml') }}"
-      register: argocd_manifests
-
-    - name: Apply ArgoCD manifests
-      kubernetes.core.k8s:
-        resource_definition: "{{ argocd_manifests.stdout }}"
-        apply: true
-        server_side_apply:
-          field_manager: argocd-controller

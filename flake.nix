@@ -26,7 +26,6 @@
             glibcLocales
             go
             gotestsum
-            iproute2
             jq
             k9s
             kanidm

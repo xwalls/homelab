@@ -7,6 +7,8 @@ k3s_kubeconfig_file: /etc/rancher/k3s/k3s.yaml
 k3s_server_config:
   tls-san:
     - "{{ control_plane_endpoint }}"
+  node-ip: "{{ control_plane_endpoint }}"
+  node-external-ip: "{{ control_plane_endpoint }}"
   disable:
     - local-storage
     - servicelb
