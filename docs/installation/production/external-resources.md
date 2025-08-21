@@ -41,7 +41,7 @@ If you decide to use a [different Terraform backend](https://www.terraform.io/la
 <!-- This API token will affect the below accounts and zones, along with their respective permissions -->
 
 <!-- └── Khue Doan - Argo Tunnel:Edit, Account Settings:Read -->
-<!--     └── khuedoan.com - Zone:Read, DNS:Edit -->
+<!--     └── ostreros.xyz - Zone:Read, DNS:Edit -->
 
 <!-- Client IP Address Filtering -->
 
