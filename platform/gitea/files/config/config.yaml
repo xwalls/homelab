@@ -16,15 +16,15 @@ repositories:
     owner: ops
     private: false
     migrate:
-      source: https://github.com/khuedoan/homelab
+      source: https://github.com/xwalls/homelab
       mirror: false
   - name: blog
-    owner: khuedoan
+    owner: xwalls
     migrate:
-      source: https://github.com/khuedoan/blog
+      source: https://github.com/xwalls/blog
       mirror: true
   - name: backstage
-    owner: khuedoan
+    owner: xwalls
     migrate:
-      source: https://github.com/khuedoan/backstage
+      source: https://github.com/xwalls/backstage
       mirror: true

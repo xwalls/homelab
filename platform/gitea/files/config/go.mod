@@ -1,4 +1,4 @@
-module git.ostreros.xyz/khuedoan/homelab/gitea/config
+module git.ostreros.xyz/xwalls/homelab/gitea/config
 
 go 1.19
 
