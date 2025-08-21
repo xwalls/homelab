@@ -27,7 +27,7 @@ argocd-apps:
       generators:
         - git:
             repoURL: &repoURL https://github.com/xwalls/homelab
-            revision: &revision dev
+            revision: &revision master
             directories:
               - path: system/*
               - path: platform/*
@@ -36,4 +36,4 @@ argocd-apps:
         spec:
           source:
             repoURL: *repoURL
-            targetRevision: dev
+            targetRevision: master
